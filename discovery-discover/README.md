@@ -88,7 +88,7 @@ const discoverServiceProperties = {
 };
 
 const initalLookup = async () => {
-  await KumuluzeeDiscovery.initialize({ extension: 'etcd' }); // or 'consul'
+  await KumuluzeeDiscovery.initialize({ extension: process.env.EXTENSION }); // 'consul or 'etcd'
 
   targetUrl = await KumuluzeeDiscovery.discoverService(discoverServiceProperties);
 }
@@ -173,8 +173,8 @@ server.all('*', (req, res) => {
   });
 });
 
-server.listen(8080, () => {
-  console.info(`Server is listening on port 8080`);
+server.listen(process.env.PORT || 8080, () => {
+  console.info(`Server is listening on port ${process.env.PORT || 8080}`);
 });
 
 ```
@@ -195,6 +195,11 @@ Note: when connecting to Consul, property `kumuluzee.config.etcd.hosts` is ignor
 
 
 ### Run microservice
+
+Before you run the sample you should set environmental variables `EXTENSION` and `PORT`:
+* EXTENSION: sets configuration source, possible values: `consul` and `etcd`,
+* PORT: sets the value of server port, default `8080`.
+
 In the end simply run this command to start microservice:
 ```
 $ npm run start

@@ -6,7 +6,7 @@ import customerRoute from './src/customerRoute';
 const server = express();
 
 const register = async () => {
-  await KumuluzeeDiscovery.initialize({ extension: 'consul' });
+  await KumuluzeeDiscovery.initialize({ extension: process.env.EXTENSION });
 
   KumuluzeeDiscovery.registerService();
 }
@@ -21,6 +21,6 @@ server.all('*', (req, res) => {
   });
 });
 
-server.listen(8081, () => {
-  console.info(`Server is listening on port 8081`);
+server.listen(process.env.PORT || 8081, () => {
+  console.info(`Server is listening on port ${process.env.PORT || 8081}`);
 });

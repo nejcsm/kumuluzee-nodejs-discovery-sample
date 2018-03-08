@@ -13,6 +13,6 @@ server.all('*', (req, res) => {
   });
 });
 
-server.listen(8080, () => {
-  console.info(`Server is listening on port 8080`);
+server.listen(process.env.PORT || 8080, () => {
+  console.info(`Server is listening on port ${process.env.PORT || 8080}`);
 });

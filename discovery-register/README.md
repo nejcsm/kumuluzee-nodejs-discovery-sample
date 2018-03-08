@@ -115,6 +115,11 @@ Note: when connecting to Consul, property `kumuluzee.config.etcd.hosts` is ignor
 Port 8081 is used because we want to run another microservice on default port, which discovers this service on port 8080.
 
 ### Run microservice
+
+Before you run the sample you should set environmental variables `EXTENSION` and `PORT`:
+* EXTENSION: sets configuration source, possible values: `consul` and `etcd`,
+* PORT: sets the value of server port, default `8081`.
+
 In the end simply run this command to start microservice:
 ```
 $ npm run start

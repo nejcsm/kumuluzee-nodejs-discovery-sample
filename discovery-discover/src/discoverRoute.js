@@ -18,7 +18,7 @@ const discoverServiceProperties = {
 };
 
 const initalLookup = async () => {
-  await KumuluzeeDiscovery.initialize({ extension: 'etcd' });
+  await KumuluzeeDiscovery.initialize({ extension: process.env.EXTENSION });
 
   targetUrl = await KumuluzeeDiscovery.discoverService(discoverServiceProperties);
 }
